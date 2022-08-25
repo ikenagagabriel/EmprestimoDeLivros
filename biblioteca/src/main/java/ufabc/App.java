@@ -1,13 +1,18 @@
 package ufabc;
 
-/**
- * Hello world!
- *
- */
+import java.util.Date;
+
+import entities.Cadastro;
+import entities.Usuario;
+
 public class App 
 {
     public static void main( String[] args )
     {
-        System.out.println( "Hello World!" );
+        Date dataNascimento = new Date();
+        Usuario usuario = new Usuario("Gabriel", dataNascimento, "123321123-00", "gabriel@gmail.com", "(11)911110000", "Rua blablabla");
+        Cadastro.cadastrarUsuario(usuario);
+
+        System.out.println("Deu certo!");
     }
 }

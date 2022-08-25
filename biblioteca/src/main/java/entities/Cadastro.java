@@ -1,11 +1,12 @@
 package entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Cadastro {
-    private static List<Usuario> usuarios;
-    private static List<Administrador> funcionarios;
-    private static List<Livro> livros;
+    private static List<Usuario> usuarios = new ArrayList<Usuario>();
+    private static List<Administrador> funcionarios = new ArrayList<Administrador>();;
+    private static List<Livro> livros = new ArrayList<Livro>();;
     
     public static int buscaLivro(String titulo) {
         return 0;

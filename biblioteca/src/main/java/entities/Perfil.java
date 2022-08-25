@@ -47,7 +47,7 @@ public abstract class Perfil{
 
     public void setDataNascimento(Date dataNascimento) {
         this.dataNascimento = dataNascimento;
-		idade = calculaIdade(dataNascimento);
+		this.idade = calculaIdade(dataNascimento);
     }
 
 	public int getIdade(){

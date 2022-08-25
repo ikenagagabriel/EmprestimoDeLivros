@@ -20,9 +20,4 @@ public class Administrador extends Perfil{
     public long getIdAdministrador() {
         return idAdministrador;
     }
-
-    public void setIdAdministrador(long idAdministrador) {
-        this.idAdministrador = idAdministrador;
-    }
-
 }

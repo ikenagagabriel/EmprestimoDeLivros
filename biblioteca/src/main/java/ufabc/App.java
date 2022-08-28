@@ -12,7 +12,5 @@ public class App
         Date dataNascimento = new Date();
         Usuario usuario = new Usuario("Gabriel", dataNascimento, "123321123-00", "gabriel@gmail.com", "(11)911110000", "Rua blablabla");
         Cadastro.cadastrarUsuario(usuario);
-
-        System.out.println("Deu certo!");
     }
 }

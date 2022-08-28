@@ -1,15 +1,33 @@
 package entities;
 
 import java.util.Date;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.MappedSuperclass;
+
 import java.util.Calendar;
 
+@MappedSuperclass
 public abstract class Perfil{
+    @Column
     protected String nome;
+
+    @Column
     protected Date dataNascimento;
+    
+    @Column
     protected int idade;
+    
+    @Column
     protected String cpf;
+    
+    @Column
     protected String email;
+    
+    @Column
     protected String telefone;
+
+    @Column
     protected String endereco;
 
 	public Perfil(String nome, Date dataNascimento, String cpf, String email, String telefone, String endereco){

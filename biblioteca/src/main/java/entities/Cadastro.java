@@ -1,40 +1,33 @@
 package entities;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.Persistence;
 
 public class Cadastro {
-    //private static List<Usuario> usuarios = new ArrayList<Usuario>();
-    private static List<Administrador> funcionarios = new ArrayList<Administrador>();;
-    private static List<Livro> livros = new ArrayList<Livro>();;
     
-    public static int buscaLivro(String titulo) {
-        return 0;
+    public static List<Livro> buscaLivro(String consulta, EntityManager em) {
+        String consultaLivro = "select * from livro where titulo like '%" + consulta + "%' or autor like '%" + consulta + "%'";
+        List<Livro> resultados = em.createNativeQuery(consultaLivro, Livro.class).getResultList();
+
+        return resultados;
     }
 
-    public static void cadastrarUsuario(Usuario usuario) {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("default");
-        EntityManager em = emf.createEntityManager();
-
+    public static void cadastrarUsuario(Usuario usuario, EntityManager em) {
         em.getTransaction().begin();
         em.persist(usuario);
         em.getTransaction().commit();
-
-        em.close();
-        emf.close();
-
-        System.out.println("Deu certo!");
     }
 
-    public static void cadastrarFuncionario(Administrador funcionario) {
-        funcionarios.add(funcionario);
+    public static void cadastrarFuncionario(Administrador funcionario, EntityManager em) {
+        em.getTransaction().begin();
+        em.persist(funcionario);
+        em.getTransaction().commit();
     }
     
-    public static void cadastrarLivro(Livro livro) {
-        livros.add(livro);
+    public static void cadastrarLivro(Livro livro, EntityManager em) {
+        em.getTransaction().begin();
+        em.persist(livro);
+        em.getTransaction().commit();
     }
 }

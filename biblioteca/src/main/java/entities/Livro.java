@@ -4,7 +4,6 @@ import java.util.Date;
 
 import entities.enums.Idioma;
 import entities.enums.Situacao;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -29,15 +28,12 @@ public class Livro {
     private double nota;
     private Situacao situacao;
 
+    public Livro(){}
+
     public Livro(int idTitulo, String titulo, String autor, String genero, String resumo, Idioma idioma,
             String editora, Date dataPublicacao, int nPaginas, Situacao situacao) {
 
-        this.idTitulo = Cadastro.buscaLivro(titulo);
-        if(this.idTitulo == -1) {
-            this.idTitulo = geraIdTitulo;
-            geraIdTitulo ++;
-        }
-
+        this.idTitulo = idTitulo;
         this.titulo = titulo;
         this.autor = autor;
         this.genero = genero;

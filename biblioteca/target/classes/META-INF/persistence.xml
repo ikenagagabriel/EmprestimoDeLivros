@@ -9,7 +9,7 @@
             <property name="jakarta.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/biblioteca"/> <!-- biblioteca é o nome do banco de dados no postgree, você deve criar o bd no postgree-->
             <property name="jakarta.persistence.jdbc.user" value="ufabc"/> <!-- nome do usuário no bd-->
             <property name="jakarta.persistence.jdbc.password" value="ufabc"/> <!-- senha do usuário no bd-->
-            <property name="jakarta.persistence.schema-generation.database.action" value="drop-and-create"/> <!-- drop-and-create irá apagar e criar novas tabelas a cada execução. Alterar para create na aplicação final-->
+            <property name="jakarta.persistence.schema-generation.database.action" value="create"/> <!-- drop-and-create irá apagar e criar novas tabelas a cada execução. Alterar para create na aplicação final-->
         </properties>
     </persistence-unit>
 </persistence>

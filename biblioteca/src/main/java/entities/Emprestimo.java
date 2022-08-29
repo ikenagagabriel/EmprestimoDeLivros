@@ -2,36 +2,44 @@ package entities;
 
 import java.util.Date;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+
+@Entity
 public class Emprestimo {
-    private int idEmprestimo;
-    private int idUsuario;
-    private int idLivro;
+    @Id
+    @GeneratedValue
+    private long idEmprestimo;
+
+    private long idUsuario;
+    private long idLivro;
     private Date dataRetirada;
     private Date dataReservada;
     private Date devolucaoPrevista;
     private Date devolucaoReal;
 
-    public int getIdEmprestimo() {
+    public long getIdEmprestimo() {
         return idEmprestimo;
     }
 
-    public void setIdEmprestimo(int idEmprestimo) {
+    public void setIdEmprestimo(long idEmprestimo) {
         this.idEmprestimo = idEmprestimo;
     }
 
-    public int getIdUsuario() {
+    public long getIdUsuario() {
         return idUsuario;
     }
 
-    public void setIdUsuario(int idUsuario) {
+    public void setIdUsuario(long idUsuario) {
         this.idUsuario = idUsuario;
     }
 
-    public int getIdLivro() {
+    public long getIdLivro() {
         return idLivro;
     }
 
-    public void setIdLivro(int idLivro) {
+    public void setIdLivro(long idLivro) {
         this.idLivro = idLivro;
     }
 

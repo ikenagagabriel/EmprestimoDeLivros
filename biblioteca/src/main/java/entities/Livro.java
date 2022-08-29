@@ -15,7 +15,7 @@ public class Livro {
 
     @Id
     @GeneratedValue
-    private int idLivro;
+    private long idLivro;
 
     private int idTitulo;
     private String titulo;
@@ -50,7 +50,7 @@ public class Livro {
         this.situacao = situacao;
     }
 
-    public int getIdLivro() {
+    public long getIdLivro() {
         return idLivro;
     }
 

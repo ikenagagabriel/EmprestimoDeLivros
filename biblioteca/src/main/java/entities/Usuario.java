@@ -11,7 +11,7 @@ public class Usuario extends Perfil{
 
     @Id
     @GeneratedValue
-    private int id;
+    private long idUsuario;
     private boolean situacaoCadastral;
 
     public Usuario(String nome, Date dataNascimento, String cpf, String email, String telefone, String endereco){
@@ -19,8 +19,8 @@ public class Usuario extends Perfil{
         this.situacaoCadastral = true;
     }
 
-    public int getId() {
-        return id;
+    public long getId() {
+        return idUsuario;
     }
 
     public boolean isSituacaoCadastral() {

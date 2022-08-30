@@ -1,5 +1,6 @@
 package ufabc;
 
+import java.text.ParseException;
 import java.util.Scanner;
 
 import jakarta.persistence.EntityManager;
@@ -8,7 +9,7 @@ import jakarta.persistence.Persistence;
 
 public class App 
 {
-    public static void main( String[] args )
+    public static void main( String[] args ) throws ParseException
     {
         Scanner sc = new Scanner(System.in);
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("default");

@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import entities.Administrador;
+import entities.Cadastro;
 import entities.Emprestimo;
 import entities.Historico;
 import entities.Livro;
@@ -33,7 +34,13 @@ public class Funcoes {
                 for (Livro livro : livros) {
                     System.out.println(livro.toString());
                 }
-                break;
+                System.out.println("Escolha a opção desejada:\n[4] Reservar livro\n[5] Sair");
+                System.out.print("Opção: ");
+                input = sc.nextLine();
+                case "4":
+                    break;
+                case "5":
+                    break;
             case "2":
                 List<Emprestimo> emprestimos = Historico.getEmprestimosUsuario(em, idUsuario);
 
@@ -88,6 +95,7 @@ public class Funcoes {
                 String endereco = sc.nextLine();
 
                 Usuario novoUsuario = new Usuario(nome, sdf.parse(dataNascimento), cpf, email, telefone, endereco);
+                Cadastro.cadastrarUsuario(em, novoUsuario);
                 break;
             case "4":
                 System.out.print("Nome: ");
@@ -104,6 +112,7 @@ public class Funcoes {
                 String enderecoAdm = sc.nextLine();
 
                 Administrador novoAdministrador = new Administrador(nomeAdm, sdf.parse(dataNascimentoAdm), cpfAdm, emailAdm, telefoneAdm, enderecoAdm);
+                Cadastro.cadastrarFuncionario(em, novoAdministrador);
                 break;
             case "5":
                 System.out.print("Título: ");
@@ -122,10 +131,11 @@ public class Funcoes {
                 String dataPublicacao = sc.nextLine();
                 System.out.print("Número de páginas: ");
                 int nPaginas = sc.nextInt();
-                System.out.print("Situação: ");
-                String situacao = sc.nextLine();
 
-                Livro livroNovo = new Livro(idTitulo, titulo, autor, genero, resumo, idioma, editora, dataPublicacao, nPaginas, situacao);
+                int idTitulo = Livro.geraIdTitulo(em, titulo);
+
+                Livro livroNovo = new Livro(idTitulo, titulo, autor, genero, resumo, idioma, editora, dataPublicacao, nPaginas) ;
+                Cadastro.cadastrarLivro(em, livroNovo);
 
                 break;
             case "6":

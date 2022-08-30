@@ -1,17 +1,21 @@
 package entities;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import entities.enums.Idioma;
 import entities.enums.Situacao;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EntityManager;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.NoResultException;
+import jakarta.persistence.Query;
 
 @Entity
 public class Livro {
-    public static int geraIdTitulo = 1;
-
     @Id
     @GeneratedValue
     private long idLivro;
@@ -31,7 +35,7 @@ public class Livro {
     public Livro(){}
 
     public Livro(int idTitulo, String titulo, String autor, String genero, String resumo, String idioma,
-            String editora, Date dataPublicacao, int nPaginas, String situacao) {
+            String editora, String dataPublicacao2, int nPaginas) throws ParseException {
 
         this.idTitulo = idTitulo;
         this.titulo = titulo;
@@ -40,10 +44,10 @@ public class Livro {
         this.resumo = resumo;
         this.idioma = Idioma.valueOf(idioma);
         this.editora = editora;
-        this.dataPublicacao = dataPublicacao;
+        this.dataPublicacao = new SimpleDateFormat("dd/MM/yyyy").parse(dataPublicacao2);
         this.nPaginas = nPaginas;
         this.nota = 0; // Começa em '0', ou seja, sem avaliações
-        this.situacao = Situacao.valueOf(situacao);
+        this.situacao = Situacao.valueOf("DISPONIVEL");
     }
 
     public long getIdLivro() {
@@ -53,6 +57,22 @@ public class Livro {
     public int getIdTitulo() {
         return idTitulo;
     }
+
+    public static int geraIdTitulo(EntityManager em, String titulo){
+        try{
+            String consultaLivro = "select idtitulo from livro where titulo like '"+ titulo + "'";
+            int resultados = (int) em.createNativeQuery(consultaLivro).getSingleResult();        
+            return resultados;
+        }
+        catch (NoResultException e){
+            String consultaLivro = "select max(idtitulo) from livro";
+            int resultados = (int) em.createNativeQuery(consultaLivro).getSingleResult();
+            return resultados+1;
+        }
+
+        
+    }
+
 
     public String getTitulo() {
         return titulo;
@@ -136,6 +156,6 @@ public class Livro {
 
     @Override
     public String toString(){
-        return "Titulo: " + getTitulo() + "\nAutor: " + getAutor() + "\nDisponibilidade: " + getSituacao() + "\n";
+        return "Id: " + getIdTitulo() + "Titulo: " + getTitulo() + "\nAutor: " + getAutor() + "\nDisponibilidade: " + getSituacao() + "\n";
     }
 }

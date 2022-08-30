@@ -2,8 +2,7 @@ package ufabc;
 
 
 import java.util.List;
-
-//import java.util.Date;
+import java.util.Scanner;
 
 import entities.Cadastro;
 import entities.Emprestimo;
@@ -18,26 +17,24 @@ public class App
 {
     public static void main( String[] args )
     {
-        // Date dataNascimento = new Date();
-        // Usuario usuario = new Usuario("Lucas Lima", dataNascimento, "789542684-01", "lucas.lima@gmail.com", "(11)944445555", "Rua dos Bobos");
-
+        Scanner sc = new Scanner(System.in);
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("default");
         EntityManager em = emf.createEntityManager();
 
-        List<Livro> livros = Cadastro.buscaLivro(em, "Boulos");
-        List<Emprestimo> emprestimos = Historico.getEmprestimosAdmin(em, "152486875-22");
+        int i = sc.nextInt();
+        System.out.println("Bem-vindo!");
+
+        while(Funcoes.bool){
+            if(i == 0){
+                Funcoes.usuarioLogado(em, 2);
+            }
+            else{
+                Funcoes.admLogado(em);
+            }
+        }
 
         em.close();
         emf.close();
-
-        for (Livro livro : livros) {
-            String imprime = livro.getTitulo() + ", " + livro.getAutor();
-            System.out.println(imprime);
-        }
-
-        for (Emprestimo emprestimo : emprestimos) {
-            String imprime = emprestimo.getIdEmprestimo() + ", " + emprestimo.getIdUsuario() +','+ emprestimo.getIdLivro();
-            System.out.println(imprime);
-        }
+        sc.close();
     }
 }

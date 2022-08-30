@@ -28,13 +28,27 @@ public class Historico {
     }
 
     public static List<Emprestimo> getEmprestimosUsuario(EntityManager em, long idusuario) {
-        String consultaLivro = "select e.* from emprestimo where idusuario=" + idusuario;
+        String consultaLivro = "select * from emprestimo where idusuario=" + idusuario;
         List<Emprestimo> resultados = em.createNativeQuery(consultaLivro, Emprestimo.class).getResultList();
 
         return resultados;
     }
 
-    public static void registraEmprestimos(EntityManager em,Emprestimo emprestimo) {
+    public static List<Livro> buscaLivro(EntityManager em, String consulta) {
+        String consultaLivro = "select * from livro where titulo like '%" + consulta + "%' or autor like '%" + consulta + "%'";
+        List<Livro> resultados = em.createNativeQuery(consultaLivro, Livro.class).getResultList();
+
+        return resultados;
+    }
+
+    public static List<Usuario> buscaUsuario(EntityManager em, String consulta) {
+        String consultaUsuario = "select * from usuario where cpf like '" + consulta + "'";
+        List<Usuario> resultados = em.createNativeQuery(consultaUsuario, Usuario.class).getResultList();
+
+        return resultados;
+    }
+
+    public static void registraEmprestimos(EntityManager em, Emprestimo emprestimo) {
         em.getTransaction().begin();
         em.persist(emprestimo);
         em.getTransaction().commit();

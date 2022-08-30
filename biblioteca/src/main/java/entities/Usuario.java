@@ -14,6 +14,10 @@ public class Usuario extends Perfil{
     private long idUsuario;
     private boolean situacaoCadastral;
 
+    public Usuario(){
+        super();
+    }
+
     public Usuario(String nome, Date dataNascimento, String cpf, String email, String telefone, String endereco){
         super(nome, dataNascimento, cpf, email, telefone, endereco);
         this.situacaoCadastral = true;

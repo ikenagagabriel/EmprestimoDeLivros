@@ -30,6 +30,8 @@ public abstract class Perfil{
     @Column
     protected String endereco;
 
+    public Perfil(){}
+
 	public Perfil(String nome, Date dataNascimento, String cpf, String email, String telefone, String endereco){
 		this.nome = nome;
 		this.dataNascimento = dataNascimento;

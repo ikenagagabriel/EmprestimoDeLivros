@@ -1,17 +1,8 @@
 package entities;
 
-import java.util.List;
-
 import jakarta.persistence.EntityManager;
 
 public class Cadastro {
-    
-    public static List<Livro> buscaLivro(EntityManager em, String consulta) {
-        String consultaLivro = "select * from livro where titulo like '%" + consulta + "%' or autor like '%" + consulta + "%'";
-        List<Livro> resultados = em.createNativeQuery(consultaLivro, Livro.class).getResultList();
-
-        return resultados;
-    }
 
     public static void cadastrarUsuario(EntityManager em, Usuario usuario) {
         em.getTransaction().begin();

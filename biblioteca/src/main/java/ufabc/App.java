@@ -4,7 +4,6 @@ import java.text.ParseException;
 import java.util.Scanner;
 
 import entities.Historico;
-import entities.Usuario;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;

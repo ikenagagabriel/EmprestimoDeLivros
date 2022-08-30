@@ -1,0 +1,93 @@
+/*package ufabc.funcoes;
+
+import java.util.Scanner;
+
+public class Funcoes {
+    public static boolean bool = true;
+    private static String input;
+    private static Scanner sc = new Scanner(System.in);
+
+    public static void usuarioLogado(){
+        System.out.println("Bem-vindo usuário!");
+        System.out.println("Escolha a opção desejada:\n[1] Buscar livro\n[2] Consultar histórico\n[3] Sair");
+        System.out.print("Opção: ");
+        input = sc.nextLine();  
+        switch(input){
+            case "1":
+                System.out.println("Digite o título do livro ou o nome do autor: ");
+                System.out.print("Opção: ");
+                input = sc.nextLine();
+                switch(input){
+                    case "1":
+                        System.out.print("Digite o título do livro: ");
+                        input = sc.nextLine();
+                        //Faz a busca pelo livro e continua o processo
+                        break;
+                    case "2":
+                        System.out.print("Digite o nome do autor: ");
+                        input = sc.nextLine();
+                        //Faz a busca pelo autor e continua o processo
+                        break;
+                    case "3":
+                        break;
+                }
+                break;
+            case "2":
+                //Puxa todo o histórico do usuário e joga na tela
+                break;
+            case "3":
+                System.out.println("Obrigado e volte sempre!");
+                bool = false;
+                break;
+        }
+    }
+
+    public static void admLogado(){
+        System.out.println("Bem-vindo adm!");
+        System.out.println("Escolha a opção desejada:\n[1] Consultar histórico\n[2] Verificar cadastro\n[3] Sair");
+        System.out.print("Opção: ");
+        input = sc.nextLine();  
+        switch(input){
+            case "1":
+                System.out.print("Digite o CPF do Usuário: ");
+                input = sc.nextLine();
+                //Verifica todo o histórico do usuário
+                break;
+            case "2":
+                System.out.print("Digite o CPF do Usuário: ");
+                input = sc.nextLine();
+                //Verifica a situação cadastral do usuário
+                break;
+            case "3":
+                System.out.println("Obrigado e volte sempre!");
+                bool = false;
+                break;
+        }
+    }
+}
+
+
+package ufabc;
+
+import ufabc.funcoes.*;
+import java.util.Scanner;
+
+public class App 
+{
+    public static void main( String[] args ){
+        Scanner sc = new Scanner(System.in);
+
+        int i = sc.nextInt();
+
+        while(Funcoes.bool){
+            if(i == 0){
+                Funcoes.usuarioLogado();
+            }
+            else{
+                Funcoes.admLogado();
+            }
+        }
+        sc.close();
+    }
+}
+*/

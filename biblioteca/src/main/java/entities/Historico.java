@@ -41,9 +41,23 @@ public class Historico {
         return resultados;
     }
 
-    public static List<Usuario> buscaUsuario(EntityManager em, String consulta) {
+    public static Livro buscaLivroId(EntityManager em, long consulta) {
+        String consultaLivro = "select * from livro where idlivro=" + consulta;
+        Livro resultados = (Livro) em.createNativeQuery(consultaLivro, Livro.class).getSingleResult();
+
+        return resultados;
+    }
+
+    public static Usuario buscaUsuario(EntityManager em, String consulta) {
         String consultaUsuario = "select * from usuario where cpf like '" + consulta + "'";
-        List<Usuario> resultados = em.createNativeQuery(consultaUsuario, Usuario.class).getResultList();
+        Usuario resultados = (Usuario) em.createNativeQuery(consultaUsuario, Usuario.class).getSingleResult();
+
+        return resultados;
+    }
+
+    public static Usuario buscaUsuarioId(EntityManager em, long consulta) {
+        String consultaLivro = "select * from usuario where idusuario=" + consulta;
+        Usuario resultados = (Usuario) em.createNativeQuery(consultaLivro, Usuario.class).getSingleResult();
 
         return resultados;
     }

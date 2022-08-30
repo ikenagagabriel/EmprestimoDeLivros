@@ -33,7 +33,9 @@ public class Funcoes {
                 List<Emprestimo> emprestimos = Historico.getEmprestimosUsuario(em, idUsuario);
 
                 for (Emprestimo emprestimo : emprestimos) {
-                    String imprime = "Livro: " + emprestimo.getIdLivro() + "\nData de Retirada: " + emprestimo.getDataRetirada() +"\nData de Prevista: "+ emprestimo.getDevolucaoPrevista() +"\nData de Devolução: "+ emprestimo.getDevolucaoReal();
+                    Livro l = Historico.buscaLivroId(em, emprestimo.getIdLivro());
+
+                    String imprime = "Livro: " + emprestimo.getIdLivro() + ", "+ l.getTitulo()+ "\nData de Retirada: " + emprestimo.getDataRetirada() +"\nData de Prevista: "+ emprestimo.getDevolucaoPrevista() +"\nData de Devolução: "+ emprestimo.getDevolucaoReal();
                     System.out.println(imprime+"\n");
                 }
 
@@ -56,18 +58,19 @@ public class Funcoes {
                 List<Emprestimo> emprestimos = Historico.getEmprestimosAdmin(em, input);
 
                 for (Emprestimo emprestimo : emprestimos) {
-                    String imprime = "\nUsuário: " + emprestimo.getIdUsuario() + "\nLivro: "+ emprestimo.getIdLivro()+ "\nData de Retirada: " + emprestimo.getDataRetirada() + "\nData de Prevista: "+ emprestimo.getDevolucaoPrevista() + "\nData de Devolução: "+ emprestimo.getDevolucaoReal();
+                    Usuario u = Historico.buscaUsuarioId(em, emprestimo.getIdUsuario());
+                    Livro l = Historico.buscaLivroId(em, emprestimo.getIdLivro());
+
+                    String imprime = "\nUsuário: " + emprestimo.getIdUsuario() + ", " + u.getNome() + "\nLivro: "+ emprestimo.getIdLivro() + ", "+ l.getTitulo()+ "\nData de Retirada: " + emprestimo.getDataRetirada() + "\nData de Prevista: "+ emprestimo.getDevolucaoPrevista() + "\nData de Devolução: "+ emprestimo.getDevolucaoReal();
                     System.out.println(imprime+"\n");
                 }
                 break;
             case "2":
                 System.out.print("Digite o CPF do Usuário: ");
                 input = sc.nextLine();
-                List<Usuario> usuario = Historico.buscaUsuario(em, input);
-                for (Usuario u : usuario) {
-                    String imprime = "\nUsuário: " + u.getNome() + "\ne-mail: "+ u.getEmail() + "\nSituação Cadastral: "+ u.isSituacaoCadastral();
-                    System.out.println(imprime+"\n");
-                }
+                Usuario usuario = Historico.buscaUsuario(em, input);
+                String imprime = "\nUsuário: " + usuario.getNome() + "\ne-mail: "+ usuario.getEmail() + "\nSituação Cadastral: "+ usuario.isSituacaoCadastral();
+                System.out.println(imprime+"\n");
                 break;
             case "3":
                 System.out.println("Obrigado e volte sempre!");

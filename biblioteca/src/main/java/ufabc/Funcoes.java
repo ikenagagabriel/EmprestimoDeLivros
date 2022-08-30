@@ -11,7 +11,6 @@ import entities.Emprestimo;
 import entities.Historico;
 import entities.Livro;
 import entities.Usuario;
-import entities.enums.Idioma;
 import jakarta.persistence.EntityManager;
 
 public class Funcoes {
@@ -21,7 +20,7 @@ public class Funcoes {
 
     private static SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
-    public static void usuarioLogado(EntityManager em,long idUsuario){
+    public static void usuarioLogado(EntityManager em,long idUsuario) throws ParseException{
         System.out.println("Escolha a opção desejada:\n[1] Buscar livro\n[2] Consultar histórico\n[3] Sair");
         System.out.print("Opção: ");
         input = sc.nextLine();  
@@ -34,13 +33,23 @@ public class Funcoes {
                 for (Livro livro : livros) {
                     System.out.println(livro.toString());
                 }
-                System.out.println("Escolha a opção desejada:\n[4] Reservar livro\n[5] Sair");
+                System.out.println("Escolha a opção desejada:\n[1] Reservar livro\n[2] Sair");
                 System.out.print("Opção: ");
                 input = sc.nextLine();
-                case "4":
-                    break;
-                case "5":
-                    break;
+                switch(input){
+                    case "1":
+                        System.out.println("Digite a Data e o ID do Livro que deseja Reservar:");
+                        System.out.print("Data de reserva (dd/MM/yyyy): ");
+                        String dataReserva = sc.nextLine();
+                        System.out.print("ID: ");
+                        long livroSelecionado = sc.nextLong();
+
+                        Emprestimo novoEmprestimo = new Emprestimo(idUsuario, livroSelecionado, sdf.parse(dataReserva));
+                        Historico.registraReserva(em, novoEmprestimo);
+                        break;
+                    case "2":
+                        break;
+                }
             case "2":
                 List<Emprestimo> emprestimos = Historico.getEmprestimosUsuario(em, idUsuario);
 
@@ -134,7 +143,7 @@ public class Funcoes {
 
                 int idTitulo = Livro.geraIdTitulo(em, titulo);
 
-                Livro livroNovo = new Livro(idTitulo, titulo, autor, genero, resumo, idioma, editora, dataPublicacao, nPaginas) ;
+                Livro livroNovo = new Livro(idTitulo, titulo, autor, genero, resumo, idioma, editora, sdf.parse(dataPublicacao), nPaginas) ;
                 Cadastro.cadastrarLivro(em, livroNovo);
 
                 break;

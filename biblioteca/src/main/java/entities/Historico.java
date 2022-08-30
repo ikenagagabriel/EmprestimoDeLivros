@@ -4,6 +4,7 @@ import java.util.List;
 
 
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.NoResultException;
 
 
 public class Historico {
@@ -62,10 +63,38 @@ public class Historico {
         return resultados;
     }
 
-    public static void registraEmprestimos(EntityManager em, Emprestimo emprestimo) {
+    public static void registraReserva(EntityManager em, Emprestimo emprestimo) {
+
+        String updateSituacao = "update livro set situacao=1 where idlivro="+ emprestimo.getIdLivro();
+        em.createNativeQuery(updateSituacao);
+        
         em.getTransaction().begin();
         em.persist(emprestimo);
         em.getTransaction().commit();
+        System.out.println("Livro reservado com sucesso!");
+    }
+
+    public static long[] buscaPerfil(EntityManager em, String cpf) {
+        try{
+            String consultaPerfil = "select idusuario from usuario where cpf like '" + cpf + "'";
+            long resultado = (long) em.createNativeQuery(consultaPerfil).getSingleResult();
+            long[] finalR = {0, resultado};
+            return finalR;
+        }
+        catch (NoResultException e){
+            try{
+                String consultaPerfil = "select idadministrador from administrador where cpf like '" + cpf + "'";
+                long resultado = (long) em.createNativeQuery(consultaPerfil).getSingleResult();        
+                long[] finalR = {1, resultado};
+                return finalR;
+            }
+            catch (NoResultException ee){
+                long[] finalR = {2, 2};
+                return finalR;
+            }
+        }
+
+
     }
 
 }

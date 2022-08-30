@@ -21,6 +21,12 @@ public class Emprestimo {
 
     public Emprestimo(){}
 
+    public Emprestimo(long idUsuario, long idLivro, Date dataReservada){
+        this.idUsuario = idUsuario;
+        this.idLivro = idLivro;
+        this.dataReservada = dataReservada;
+    }
+
     public long getIdEmprestimo() {
         return idEmprestimo;
     }

@@ -1,9 +1,6 @@
 package entities;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 
 import entities.enums.Idioma;
 import entities.enums.Situacao;
@@ -12,7 +9,6 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.NoResultException;
-import jakarta.persistence.Query;
 
 @Entity
 public class Livro {
@@ -35,7 +31,7 @@ public class Livro {
     public Livro(){}
 
     public Livro(int idTitulo, String titulo, String autor, String genero, String resumo, String idioma,
-            String editora, String dataPublicacao2, int nPaginas) throws ParseException {
+            String editora, Date dataPublicacao2, int nPaginas){
 
         this.idTitulo = idTitulo;
         this.titulo = titulo;
@@ -44,7 +40,7 @@ public class Livro {
         this.resumo = resumo;
         this.idioma = Idioma.valueOf(idioma);
         this.editora = editora;
-        this.dataPublicacao = new SimpleDateFormat("dd/MM/yyyy").parse(dataPublicacao2);
+        this.dataPublicacao = dataPublicacao2;
         this.nPaginas = nPaginas;
         this.nota = 0; // Começa em '0', ou seja, sem avaliações
         this.situacao = Situacao.valueOf("DISPONIVEL");
@@ -69,8 +65,6 @@ public class Livro {
             int resultados = (int) em.createNativeQuery(consultaLivro).getSingleResult();
             return resultados+1;
         }
-
-        
     }
 
 
@@ -156,6 +150,6 @@ public class Livro {
 
     @Override
     public String toString(){
-        return "Id: " + getIdTitulo() + "Titulo: " + getTitulo() + "\nAutor: " + getAutor() + "\nDisponibilidade: " + getSituacao() + "\n";
+        return "Id: " + getIdLivro() + "\nTitulo: " + getTitulo() + "\nAutor: " + getAutor() + "\nDisponibilidade: " + getSituacao() + "\n";
     }
 }

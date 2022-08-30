@@ -76,4 +76,8 @@ public class Emprestimo {
     public void setDevolucaoReal(Date devolucaoReal) {
         this.devolucaoReal = devolucaoReal;
     }
+
+    public String toString(Livro l) {
+        return "Livro: " + getIdLivro() + ", "+ l.getTitulo()+ "\nData de Retirada: " + getDataRetirada() +"\nData de Prevista: "+ getDevolucaoPrevista() +"\nData de Devolução: "+ getDevolucaoReal() + "\n";
+    }
 }

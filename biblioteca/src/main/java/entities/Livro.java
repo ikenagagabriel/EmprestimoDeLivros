@@ -30,20 +30,20 @@ public class Livro {
 
     public Livro(){}
 
-    public Livro(int idTitulo, String titulo, String autor, String genero, String resumo, Idioma idioma,
-            String editora, Date dataPublicacao, int nPaginas, Situacao situacao) {
+    public Livro(int idTitulo, String titulo, String autor, String genero, String resumo, String idioma,
+            String editora, Date dataPublicacao, int nPaginas, String situacao) {
 
         this.idTitulo = idTitulo;
         this.titulo = titulo;
         this.autor = autor;
         this.genero = genero;
         this.resumo = resumo;
-        this.idioma = idioma;
+        this.idioma = Idioma.valueOf(idioma);
         this.editora = editora;
         this.dataPublicacao = dataPublicacao;
         this.nPaginas = nPaginas;
         this.nota = 0; // Começa em '0', ou seja, sem avaliações
-        this.situacao = situacao;
+        this.situacao = Situacao.valueOf(situacao);
     }
 
     public long getIdLivro() {
@@ -132,5 +132,10 @@ public class Livro {
 
     public void setSituacao(Situacao situacao) {
         this.situacao = situacao;
+    }
+
+    @Override
+    public String toString(){
+        return "Titulo: " + getTitulo() + "\nAutor: " + getAutor() + "\nDisponibilidade: " + getSituacao() + "\n";
     }
 }

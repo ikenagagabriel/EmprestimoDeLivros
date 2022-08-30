@@ -33,5 +33,10 @@ public class Usuario extends Perfil{
 
     public void setSituacaoCadastral(boolean situacaoCadastral) {
         this.situacaoCadastral = situacaoCadastral;
-    }  
+    }
+
+    @Override
+    public String toString() {
+        return "\nUsuário: " + getNome() + "\ne-mail: "+ getEmail() + "\nSituação Cadastral: "+ isSituacaoCadastral() + "\n";
+    }
 }

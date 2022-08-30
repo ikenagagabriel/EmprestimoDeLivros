@@ -19,6 +19,8 @@ public class Emprestimo {
     private Date devolucaoPrevista;
     private Date devolucaoReal;
 
+    public Emprestimo(){}
+
     public long getIdEmprestimo() {
         return idEmprestimo;
     }

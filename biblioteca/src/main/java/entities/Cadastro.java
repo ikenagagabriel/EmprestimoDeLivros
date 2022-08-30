@@ -6,26 +6,26 @@ import jakarta.persistence.EntityManager;
 
 public class Cadastro {
     
-    public static List<Livro> buscaLivro(String consulta, EntityManager em) {
+    public static List<Livro> buscaLivro(EntityManager em, String consulta) {
         String consultaLivro = "select * from livro where titulo like '%" + consulta + "%' or autor like '%" + consulta + "%'";
         List<Livro> resultados = em.createNativeQuery(consultaLivro, Livro.class).getResultList();
 
         return resultados;
     }
 
-    public static void cadastrarUsuario(Usuario usuario, EntityManager em) {
+    public static void cadastrarUsuario(EntityManager em, Usuario usuario) {
         em.getTransaction().begin();
         em.persist(usuario);
         em.getTransaction().commit();
     }
 
-    public static void cadastrarFuncionario(Administrador funcionario, EntityManager em) {
+    public static void cadastrarFuncionario(EntityManager em, Administrador funcionario) {
         em.getTransaction().begin();
         em.persist(funcionario);
         em.getTransaction().commit();
     }
     
-    public static void cadastrarLivro(Livro livro, EntityManager em) {
+    public static void cadastrarLivro(EntityManager em, Livro livro) {
         em.getTransaction().begin();
         em.persist(livro);
         em.getTransaction().commit();
